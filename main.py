@@ -21,7 +21,21 @@ def main():
         mean = int(dataset[column].mean(skipna=True))
         dataset[column] = dataset[column].replace(np.NaN, mean)
     # Split dataset into train and test.
-    X = dataset[:, 0:8]
-    y = dataset[:, 8]
+    X = dataset.iloc[:, 0:8]
+    y = dataset.iloc[:, 8]
     X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0, test_size=0.2)
+    # Feature scaling.
+    sc_X = StandardScaler()
+    X_train = sc_X.fit_transform(X_train)
+    X_test = sc_X.fit_transform(X_test)
+    # Define KNN model.
+    classifier = KNeighborsClassifier(n_neighbors=11, p=2, metric='euclidean')
+    classifier.fit(X_train, y_train)
+    # Predict the test results.
+    y_pred = classifier.predict(X_test) 
+    # Evaluate the model.
+    cm = confusion_matrix(y_test, y_pred)
+    print()
+    print(f"F1 score: {f1_score(y_test, y_pred)}")
+    print(f"Accuracy: {accuracy_score(y_test, y_pred)}")
 main()

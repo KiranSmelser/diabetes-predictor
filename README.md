@@ -27,7 +27,7 @@
 
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
+![Example screenshot](./example.PNG)
 
 
 ## Setup

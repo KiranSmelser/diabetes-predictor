@@ -38,4 +38,6 @@ def main():
     print()
     print(f"F1 score: {f1_score(y_test, y_pred)}")
     print(f"Accuracy: {accuracy_score(y_test, y_pred)}")
-main()
+
+if __name__ == "__main__":
+    main()
